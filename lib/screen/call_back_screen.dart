@@ -21,7 +21,6 @@ class _CallBackScreenState extends State<CallBackScreen> {
             currentPageIndex = index;
           });
         },
-        // indicatorColor: Colors.amber,
         selectedIndex: currentPageIndex,
         destinations: <Widget>[
           const NavigationDestination(
@@ -33,7 +32,6 @@ class _CallBackScreenState extends State<CallBackScreen> {
             ),
             label: 'گفتگو',
           ),
-
           NavigationDestination(
             icon: CircleAvatar(
               backgroundColor: Color(0xFFEEEEEE),
@@ -41,7 +39,6 @@ class _CallBackScreenState extends State<CallBackScreen> {
             ),
             label: 'میکروفون',
           ),
-
           NavigationDestination(
             icon: CircleAvatar(
               backgroundColor: Color(0xFFE12E2E),
@@ -50,12 +47,11 @@ class _CallBackScreenState extends State<CallBackScreen> {
             label: 'قطع کردن',
           ),
           NavigationDestination(
+            label: ' دوربین',
             icon: CircleAvatar(
               backgroundColor: Color(0xFFEEEEEE),
               child: Icon(Icons.video_camera_back, color: Color(0xFF454545)),
             ),
-
-            label: ' دوربین',
           ),
           NavigationDestination(
             icon: CircleAvatar(
@@ -111,7 +107,9 @@ class _CallBackScreenState extends State<CallBackScreen> {
                   ),
                 ),
 
-                Positioned(top: 24,right: 16,
+                Positioned(
+                  top: 24,
+                  right: 16,
                   child: SizedBox(
                     width: 112.0,
                     height: 112,
