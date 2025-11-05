@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../../core/widget/app_bar.dart';
+
+
 
 class CallBackScreen extends StatefulWidget {
   const CallBackScreen({super.key});
@@ -14,7 +19,7 @@ class _CallBackScreenState extends State<CallBackScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: NavigationBar(
-        height: 89.0,
+        height: 89.0.h,
         backgroundColor: Color(0xFFffffff),
         onDestinationSelected: (int index) {
           setState(() {
@@ -23,9 +28,8 @@ class _CallBackScreenState extends State<CallBackScreen> {
         },
         selectedIndex: currentPageIndex,
         destinations: <Widget>[
-          const NavigationDestination(
+           NavigationDestination(
             selectedIcon: CircleAvatar(),
-            //
             icon: CircleAvatar(
               backgroundColor: Color(0xFFEEEEEE),
               child: Icon(Icons.message, color: Color(0xFFD6D6D6)),
@@ -64,14 +68,7 @@ class _CallBackScreenState extends State<CallBackScreen> {
       ),
 
       backgroundColor: Color(0xFFF2F3F3),
-      appBar: AppBar(
-        backgroundColor: Color(0xFFffffff),
-        leading: IconButton(onPressed: () {}, icon: Icon(Icons.menu)),
-        title: Align(
-          alignment: Alignment.topRight,
-          child: Image.asset('asset/image/apocom.png'),
-        ),
-      ),
+      appBar: AppBarWidget(),
       body: Column(
         children: [
           Card(
@@ -89,36 +86,36 @@ class _CallBackScreenState extends State<CallBackScreen> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text('کاربر 1010', textAlign: TextAlign.end),
-                  SizedBox(width: 8.0),
+                  SizedBox(width: 8.0.w),
                   Image.asset('asset/image/profile_image.png'),
                 ],
               ),
             ),
           ),
-          Expanded(
-            child: Stack(
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('asset/image/video_call_image.png'),
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-                ),
-
-                Positioned(
-                  top: 24,
-                  right: 16,
-                  child: SizedBox(
-                    width: 112.0,
-                    height: 112,
-                    child: Image.asset('asset/image/support_image.png'),
-                  ),
-                ),
-              ],
-            ),
-          ),
+          // Expanded(
+          //   child: Stack(
+          //     children: [
+          //       Container(
+          //         decoration: BoxDecoration(
+          //           image: DecorationImage(
+          //             image: AssetImage('asset/image/video_call_image.png'),
+          //             fit: BoxFit.fill,
+          //           ),
+          //         ),
+          //       ),
+          //
+          //       Positioned(
+          //         top: 24.h,
+          //         right: 16.w,
+          //         child: SizedBox(
+          //           width: 112.0.w,
+          //           height: 112.h,
+          //           child: Image.asset('asset/image/support_image.png'),
+          //         ),
+          //       ),
+          //     ],
+          //   ),
+          // ),
         ],
       ),
     );
