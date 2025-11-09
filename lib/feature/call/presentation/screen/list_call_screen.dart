@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ui_screen/core/util/constant/constant.dart';
+import 'package:ui_screen/feature/call/presentation/widget/call_button.dart';
 import '../../../../core/widget/app_bar.dart';
 import '../widget/list_call_page1.dart';
 import '../widget/list_call_page2.dart';
@@ -13,15 +15,15 @@ class ListCallScreen extends StatefulWidget {
 
 class _ListCallScreenState extends State<ListCallScreen> {
   int indexOfPages = 0;
+  bool isSelected2 = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF5F5F5),
+      backgroundColor: Constant.appBackground,
       appBar: AppBarWidget(
         bottom: PreferredSize(
           preferredSize: Size.fromHeight(150.0),
-
           child: Container(
             width: double.infinity,
             color: Color(0xFFF2F3F3),
@@ -39,47 +41,27 @@ class _ListCallScreenState extends State<ListCallScreen> {
                   width: 343.0.w,
                   height: 41.0.h,
                   decoration: BoxDecoration(
-                    color: Color(0xFFFFFFFF),
+                    color: Constant.cardBackground,
                     borderRadius: BorderRadius.all(Radius.circular(100.0)),
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          minimumSize: Size(160.5.w, 33.0.h),
-                          backgroundColor: indexOfPages ==0
-                              ? Color(0xFFffffff)
-                              : Color(0xFFF1EEF7),
-                        ),
-                        onPressed: () => setState(() => indexOfPages = 0),
-                        child: Text(
-                          'تماس های جاری',
-                          style: TextStyle(
-                            color: indexOfPages == 0
-                                ? Color(0xFF5E5E5E)
-                                : Color(0xFF65499E),
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
+                      CallButton(
+                        onPress: () => setState(() {
+                          indexOfPages = 0;
+                          isSelected2 = !isSelected2;
+                        }),
+                        buttonText: 'تماس های جاری',
+                        isSelected: !isSelected2,
                       ),
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          minimumSize: Size(160.5.w, 33.0.h),
-                          backgroundColor: indexOfPages !=0
-                              ? Color(0xFFffffff)
-                              : Color(0xFFF1EEF7),
-                        ),
-                        onPressed: () => setState(() => indexOfPages = 1),
-                        child: Text(
-                          ' صف تماس ها',
-                          style: TextStyle(
-                            color: indexOfPages == 1
-                                ? Color(0xFF5E5E5E)
-                                : Color(0xFF65499E),
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
+                      CallButton(
+                        isSelected: isSelected2,
+                        onPress: () => setState(() {
+                          indexOfPages = 1;
+                          isSelected2 = !isSelected2;
+                        }),
+                        buttonText: 'صف تماس ها',
                       ),
                     ],
                   ),
