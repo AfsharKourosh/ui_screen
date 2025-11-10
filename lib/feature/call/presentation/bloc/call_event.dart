@@ -4,12 +4,11 @@ part of 'call_bloc.dart';
 abstract class CallEvent extends Equatable {
   const CallEvent();
 }
-class GetCallEvent extends CallEvent{
-  @override
-  List<Object?> get props => [];
-}
-class LoadCallEvent extends CallEvent{
-  @override
-  List<Object?> get props => [];
-}
 
+class ChangeTabEvent extends CallEvent {
+  final int index;
+  const ChangeTabEvent({required this.index});
+
+  @override
+  List<Object?> get props => [ChangeTabEvent];
+}

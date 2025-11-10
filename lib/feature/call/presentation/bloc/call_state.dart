@@ -1,6 +1,15 @@
 part of 'call_bloc.dart';
 
 @immutable
-sealed class CallState {}
+class CallState extends Equatable {
+  final CallStatus callStatus;
 
-final class CallInitial extends CallState {}
+  const CallState({required this.callStatus});
+
+  CallState copyWith({CallStatus? newCallStatus}) {
+    return CallState(callStatus: newCallStatus ?? callStatus);
+  }
+
+  @override
+  List<Object?> get props => [callStatus];
+}
