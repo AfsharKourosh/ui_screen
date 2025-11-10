@@ -11,7 +11,7 @@ class Constant {
   static const Color userText = Color(0xFF454545);
   static const Color selectButtonText = Color(0xFF5E5E5E);
   static const Color unselectButtonText = Color(0xFF65499E);
-  static const Color buttonNavText = Color(0xFF000000);
+  static const Color buttonNav = Color(0xFF000000);
   static const Color menuText = Color(0xFF3C2C5E);
   static const Color menuButton = Color(0xFF65499E);
   static const Color selectButtonBackground = Color(0xFFE6E6E6);

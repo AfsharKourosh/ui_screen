@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ui_screen/core/util/constant/constant.dart';
+import 'package:ui_screen/feature/call/presentation/widget/bottom_navigation.dart';
 import '../../../../core/widget/app_bar.dart';
 
 class CallBackScreen extends StatefulWidget {
@@ -10,68 +12,15 @@ class CallBackScreen extends StatefulWidget {
 }
 
 class _CallBackScreenState extends State<CallBackScreen> {
+  final int _selectedIndex = 0;
+
 
   @override
   Widget build(BuildContext context) {
-    int currentPageIndex = 0;
     return Scaffold(
       backgroundColor: Color(0xFFF2F3F3),
       appBar: AppBarWidget(),
-      bottomNavigationBar: NavigationBar(
-        indicatorColor: Colors.transparent,
-        overlayColor: WidgetStateProperty.all(Colors.transparent),
-        height: 89.0.h,
-        backgroundColor: Color(0xFFffffff),
-        onDestinationSelected: (int index) {
-          setState(() {
-            currentPageIndex = index;
-          });
-        },
-        selectedIndex: currentPageIndex,
-        destinations: <Widget>[
-          NavigationDestination(
-            label: 'گفتگو',
-            selectedIcon: CircleAvatar(
-              backgroundColor: Color(0xFFffffff),
-              child: Icon(Icons.message, color: Color(0xFFD6D6D6)),
-            ),
-            icon: CircleAvatar(),
-          ),
-
-          NavigationDestination(
-            label: 'میکروفون',
-            icon: CircleAvatar(
-              backgroundColor: Color(0xFFE6E6E6),
-              child: Icon(Icons.mic_none, color: Color(0xFF454545)),
-            ),
-          ),
-
-          NavigationDestination(
-            label: 'قطع کردن',
-            icon: CircleAvatar(
-              backgroundColor: Color(0xFFE12E2E),
-              child: Image.asset('asset/image/callEnd.png'),
-            ),
-          ),
-
-          NavigationDestination(
-            label: ' دوربین',
-            icon: CircleAvatar(
-              backgroundColor: Color(0xFFE6E6E6),
-              child: Icon(Icons.video_camera_back, color: Color(0xFF454545)),
-            ),
-          ),
-
-          NavigationDestination(
-            label: ' بلندگو',
-            icon: CircleAvatar(
-              backgroundColor: Color(0xFFE6E6E6),
-              child: Icon(Icons.speaker, color: Color(0xFF454545)),
-            ),
-          ),
-        ],
-      ),
-
+      bottomNavigationBar: BottomNavigation(),
       body: Column(
         children: [
           Card(
@@ -119,6 +68,61 @@ class _CallBackScreenState extends State<CallBackScreen> {
 //       icon: Icon(Icons.favorite_border),
 //       activeIcon: Icon(Icons.favorite),
 //       label: "Favorites",
+//     ),
+//   ],
+// ),
+//-------------------------------------------------------------------------------
+// NavigationBar(
+//   indicatorColor: Colors.transparent,
+//   overlayColor: WidgetStateProperty.all(Colors.transparent),
+//   height: 89.0.h,
+//   backgroundColor: Color(0xFFffffff),
+//   onDestinationSelected: (int index) {
+//     setState(() {
+//       currentPageIndex = index;
+//     });
+//   },
+//   selectedIndex: currentPageIndex,
+//   destinations: <Widget>[
+//     NavigationDestination(
+//       label: 'گفتگو',
+//       selectedIcon: CircleAvatar(
+//         backgroundColor: Color(0xFFffffff),
+//         child: Icon(Icons.message, color: Color(0xFFD6D6D6)),
+//       ),
+//       icon: CircleAvatar(),
+//     ),
+//
+//     NavigationDestination(
+//       label: 'میکروفون',
+//       icon: CircleAvatar(
+//         backgroundColor: Color(0xFFE6E6E6),
+//         child: Icon(Icons.mic_none, color: Color(0xFF454545)),
+//       ),
+//     ),
+//
+//     NavigationDestination(
+//       label: 'قطع کردن',
+//       icon: CircleAvatar(
+//         backgroundColor: Color(0xFFE12E2E),
+//         child: Image.asset('asset/image/callEnd.png'),
+//       ),
+//     ),
+//
+//     NavigationDestination(
+//       label: ' دوربین',
+//       icon: CircleAvatar(
+//         backgroundColor: Color(0xFFE6E6E6),
+//         child: Icon(Icons.video_camera_back, color: Color(0xFF454545)),
+//       ),
+//     ),
+//
+//     NavigationDestination(
+//       label: ' بلندگو',
+//       icon: CircleAvatar(
+//         backgroundColor: Color(0xFFE6E6E6),
+//         child: Icon(Icons.speaker, color: Color(0xFF454545)),
+//       ),
 //     ),
 //   ],
 // ),
