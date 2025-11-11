@@ -20,17 +20,24 @@ class _CameraPageState extends State<CameraPage> {
   }
 
   Future<void> _initCamera() async {
-    cameras = await availableCameras();
-    if (cameras != null && cameras!.isNotEmpty) {
-      // انتخاب دوربین جلو
-      final frontCamera = cameras!.firstWhere(
-            (c) => c.lensDirection == CameraLensDirection.front,
-        orElse: () => cameras!.first,
-      );
-      controller = CameraController(frontCamera, ResolutionPreset.medium, enableAudio: false);
-      await controller!.initialize();
-      if (!mounted) return;
-      setState(() => isInitialized = true);
+    try {
+      cameras = await availableCameras();
+      if (cameras != null && cameras!.isNotEmpty) {
+        final frontCamera = cameras!.firstWhere(
+              (c) => c.lensDirection == CameraLensDirection.front,
+          orElse: () => cameras!.first,
+        );
+        controller = CameraController(
+          frontCamera,
+          ResolutionPreset.medium,
+          enableAudio: false,
+        );
+        await controller!.initialize();
+        if (!mounted) return;
+        setState(() => isInitialized = true);
+      }
+    } catch (e) {
+      debugPrint("Error initializing camera: $e");
     }
   }
 
@@ -42,8 +49,12 @@ class _CameraPageState extends State<CameraPage> {
 
   @override
   Widget build(BuildContext context) {
-    return isInitialized && controller != null
-        ? CameraPreview(controller!)
-        : const Center(child: CircularProgressIndicator());
+    if (!isInitialized || controller == null) {
+      return const Center(child: CircularProgressIndicator());
+    }
+    return AspectRatio(
+      aspectRatio: controller!.value.aspectRatio,
+      child: CameraPreview(controller!),
+    );
   }
 }

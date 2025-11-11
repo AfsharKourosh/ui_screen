@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ui_screen/core/util/constant/constant.dart';
 import 'package:ui_screen/feature/call/presentation/widget/bottom_navigation.dart';
 import '../../../../core/widget/app_bar.dart';
+import '../widget/camera_page.dart';
 
 class CallBackScreen extends StatefulWidget {
   const CallBackScreen({super.key});
@@ -12,15 +13,21 @@ class CallBackScreen extends StatefulWidget {
 }
 
 class _CallBackScreenState extends State<CallBackScreen> {
-  final int _selectedIndex = 0;
-
+  int index2 = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFF2F3F3),
       appBar: AppBarWidget(),
-      bottomNavigationBar: BottomNavigation(),
+      bottomNavigationBar: BottomNavigation(
+        selectedIndex: index2,
+        tap: (index) {
+          setState(() {
+            index2 = index;
+          });
+        },
+      ),
       body: Column(
         children: [
           Card(
@@ -44,6 +51,19 @@ class _CallBackScreenState extends State<CallBackScreen> {
               ),
             ),
           ),
+          Expanded(
+            child: index2 == 0
+                ? Center(child: Text('گفتگو'))
+                : index2 == 1
+                ? Center(child: Text('میکروفون'))
+                : index2 == 2
+                ? Center(child: Text('قطع کردن'))
+                : index2 == 3
+                ? CameraPage()
+                : index2 == 4
+                ? Center(child: Text('بلندگو'))
+                : Container(),
+          ),
         ],
       ),
     );
@@ -51,7 +71,7 @@ class _CallBackScreenState extends State<CallBackScreen> {
 }
 
 //---------------------------------------------------------------------------------
-// BottomNavigationBar(
+// BottomNavigationBar(CameraPage()
 //   currentIndex: _selectedIndex,
 //   onTap: _onItemTapped,
 //   selectedItemColor: Colors.transparent
