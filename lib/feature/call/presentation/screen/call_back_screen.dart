@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ui_screen/core/util/constant/constant.dart';
 import 'package:ui_screen/core/widget/app_bar.dart';
 import 'package:ui_screen/feature/call/presentation/widget/bottom_navigation.dart';
 import 'package:ui_screen/feature/call/presentation/widget/camera_page.dart';
@@ -21,7 +22,7 @@ class CallBackView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF2F3F3),
+      backgroundColor: Constant.scafold,
       appBar: AppBarWidget(),
       bottomNavigationBar: BottomNavigation(),
       body: Column(
@@ -30,7 +31,7 @@ class CallBackView extends StatelessWidget {
             margin: const EdgeInsets.symmetric(vertical: 4.0),
             elevation: 0,
             child: ListTile(
-              tileColor: Color(0xFFffffff),
+              tileColor: Constant.cardBackground,
               leading: IconButton(
                 onPressed: () {
                   Navigator.pop(context);

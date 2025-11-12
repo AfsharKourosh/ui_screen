@@ -28,10 +28,10 @@ class _ListCallScreenState extends State<ListCallScreen> {
         backgroundColor: Constant.appBackground,
         appBar: AppBarWidget(
           bottom: PreferredSize(
-            preferredSize: Size.fromHeight(150.0),
+            preferredSize: Size.fromHeight(140.h),
             child: Container(
               width: double.infinity,
-              color: Color(0xFFF2F3F3),
+              color:Constant.scafold,
               child: Column(
                 children: [
                   SizedBox(

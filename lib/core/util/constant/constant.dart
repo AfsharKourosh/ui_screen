@@ -16,4 +16,5 @@ class Constant {
   static const Color menuButton = Color(0xFF65499E);
   static const Color selectButtonBackground = Color(0xFFE6E6E6);
   static const Color unselectButtonBackground = Color(0xFFF1EEF7);
+  static const Color scafold =Color(0xFFF2F3F3);
 }

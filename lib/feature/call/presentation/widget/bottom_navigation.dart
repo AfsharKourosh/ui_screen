@@ -11,22 +11,34 @@ class BottomNavigation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(color: Colors.white,
+    return Container(
+      color: Constant.cardBackground,
       height: 89.0.h,
       child: Row(
         children: List.generate(5, (index) {
           return Expanded(
             child: BlocSelector<BottomNavCubit, int, bool>(
               selector: (selectedIndex) => selectedIndex == index,
-              builder: (context, state) {
+              builder: (context, isSelected) {
+                final bool isSpecial = index == 2;
+                // final bool isSelected = true;
+
+                final Color backgroundColor = isSelected
+                    ? (isSpecial ? Colors.purple : Colors.grey) : (isSpecial ? Colors.red : Colors.grey);
+                final Color iconColor = isSelected? (isSpecial ? Constant.cardBackground : Constant.userText) : (isSpecial ? Constant.cardBackground : Constant.menuButton);
+
+
                 return GestureDetector(
                   onTap: () => context.read<BottomNavCubit>().changeTab(index),
                   child: Column(
                     children: [
                       SizedBox(height: 20.0),
                       CircleAvatar(
-                        backgroundColor: Constant.selectButtonBackground,
-                        child: Icon(getIcon(index)),
+                        backgroundColor: backgroundColor,
+                        child: Icon(
+                          getIcon(index),
+                          color: iconColor
+                        ),
                       ),
                       SizedBox(height: 10.0),
                       Text(getLable(index)),

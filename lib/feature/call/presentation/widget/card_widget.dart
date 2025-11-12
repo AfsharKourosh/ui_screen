@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ui_screen/core/util/constant/constant.dart';
 
 import '../screen/call_back_screen.dart';
 
@@ -15,7 +16,7 @@ class CardWidget extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 4.0),
       elevation: 0,
       child: ListTile(
-        tileColor: Color(0xFFffffff),
+        tileColor: Constant.cardBackground,
         leading: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
