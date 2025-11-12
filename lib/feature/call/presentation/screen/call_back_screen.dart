@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:ui_screen/core/util/constant/constant.dart';
 import 'package:ui_screen/feature/call/presentation/widget/bottom_navigation.dart';
 import '../../../../core/widget/app_bar.dart';
 import '../widget/camera_page.dart';
@@ -14,6 +13,7 @@ class CallBackScreen extends StatefulWidget {
 
 class _CallBackScreenState extends State<CallBackScreen> {
   int index2 = 0;
+  bool isCameraOpen = false;
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +25,9 @@ class _CallBackScreenState extends State<CallBackScreen> {
         tap: (index) {
           setState(() {
             index2 = index;
+            if (index == 3) {
+              isCameraOpen = !isCameraOpen;
+            }
           });
         },
       ),
@@ -59,7 +62,7 @@ class _CallBackScreenState extends State<CallBackScreen> {
                 : index2 == 2
                 ? Center(child: Text('قطع کردن'))
                 : index2 == 3
-                ? CameraPage()
+                ? (isCameraOpen ? CameraPage() : Center(child: Text('data')))
                 : index2 == 4
                 ? Center(child: Text('بلندگو'))
                 : Container(),

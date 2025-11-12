@@ -65,10 +65,8 @@ class _ListCallScreenState extends State<ListCallScreen> {
                                 context.read<CallBloc>().add(
                                   ChangeTabEvent(index: 0),
                                 );
-                                // indexOfPages = 0;
                                 isSelected2 = !isSelected2;
                               },
-
                               buttonText: 'تماس های جاری',
                               isSelected: !isSelected2,
                             ),
@@ -78,7 +76,6 @@ class _ListCallScreenState extends State<ListCallScreen> {
                                 context.read<CallBloc>().add(
                                   ChangeTabEvent(index: 1),
                                 );
-                                // indexOfPages = 1;
                                 isSelected2 = !isSelected2;
                               },
                               buttonText: 'صف تماس ها',
