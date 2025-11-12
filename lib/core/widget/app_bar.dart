@@ -13,7 +13,6 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
       leading: IconButton(onPressed: () {}, icon: const Icon(Icons.menu)),
       title: Align(
         alignment: Alignment.topRight,
-
         child: Image.asset('asset/image/apocom.png'),
       ),
       bottom: bottom,

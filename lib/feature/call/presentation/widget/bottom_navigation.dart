@@ -1,72 +1,77 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:ui_screen/feature/call/presentation/bloc/bottom_nav/bottom_nav_cubit.dart';
 import '../../../../core/util/constant/constant.dart';
 
 class BottomNavigation extends StatelessWidget {
-  final int selectedIndex;
+  final int selectedIndex = 0;
 
-  final ValueChanged<int> tap;
-
-  const BottomNavigation({
-    super.key,
-    required this.selectedIndex,
-    required this.tap,
-  });
+  const BottomNavigation({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(color: Colors.white,
       height: 89.0.h,
-      child: BottomNavigationBar(
-        onTap: tap,
-        type: BottomNavigationBarType.fixed,
-        currentIndex: selectedIndex,
-        backgroundColor: Constant.cardBackground,
-        selectedFontSize: 10.0,
-        unselectedFontSize: 10.0,
-        selectedItemColor: Constant.buttonNav,
-        unselectedItemColor: Constant.buttonNav,
-        showUnselectedLabels: true,
-        selectedLabelStyle: TextStyle(height: 3),
-        items: [
-          BottomNavigationBarItem(
-            icon: CircleAvatar(
-              backgroundColor: Constant.selectButtonBackground,
-              child: Icon(Icons.message, color: Constant.buttonNav),
+      child: Row(
+        children: List.generate(5, (index) {
+          return Expanded(
+            child: BlocSelector<BottomNavCubit, int, bool>(
+              selector: (selectedIndex) => selectedIndex == index,
+              builder: (context, state) {
+                return GestureDetector(
+                  onTap: () => context.read<BottomNavCubit>().changeTab(index),
+                  child: Column(
+                    children: [
+                      SizedBox(height: 20.0),
+                      CircleAvatar(
+                        backgroundColor: Constant.selectButtonBackground,
+                        child: Icon(getIcon(index)),
+                      ),
+                      SizedBox(height: 10.0),
+                      Text(getLable(index)),
+                    ],
+                  ),
+                );
+              },
             ),
-            label: 'گفتگو',
-          ),
-          BottomNavigationBarItem(
-            icon: CircleAvatar(
-              backgroundColor: Constant.selectButtonBackground,
-              child: Icon(Icons.mic, color: Constant.buttonNav),
-            ),
-            label: 'میکروفون',
-          ),
-          BottomNavigationBarItem(
-            icon: CircleAvatar(
-              backgroundColor: Constant.incorrectPText,
-              child: Icon(Icons.call_end, color: Constant.cardBackground),
-            ),
-            label: 'قطع کردن',
-          ),
-          BottomNavigationBarItem(
-            icon: CircleAvatar(
-              backgroundColor: Constant.selectButtonBackground,
-              child: Icon(Icons.video_camera_back, color: Constant.buttonNav),
-            ),
-            label: 'دوربین',
-          ),
-          BottomNavigationBarItem(
-            icon: CircleAvatar(
-              backgroundColor: Constant.selectButtonBackground,
-              child: Icon(Icons.volume_up, color: Constant.buttonNav),
-            ),
-            label: 'بلندگو',
-          ),
-        ],
+          );
+        }),
       ),
     );
+  }
+
+  IconData getIcon(int index) {
+    switch (index) {
+      case 0:
+        return Icons.message;
+      case 1:
+        return Icons.mic;
+      case 2:
+        return Icons.call_end;
+      case 3:
+        return Icons.video_camera_back;
+      case 4:
+        return Icons.volume_up;
+      default:
+        return Icons.icecream;
+    }
+  }
+
+  String getLable(int index) {
+    switch (index) {
+      case 0:
+        return 'گفتگو';
+      case 1:
+        return 'میکروفون';
+      case 2:
+        return 'قطع کردن';
+      case 3:
+        return 'دوربین';
+      case 4:
+        return 'بلندگو';
+      default:
+        return '';
+    }
   }
 }
