@@ -49,8 +49,17 @@ class CallBackView extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: BlocBuilder<BottomNavCubit, int>(
-              builder: (context, index) {
+            child: BlocBuilder<BottomNavCubit, Map<String, dynamic>>(
+              builder: (context, state) {
+
+                int index = state["index"];
+                bool cameraOpen = state["cameraOpen"];
+                if (index == 3) {
+                  return cameraOpen
+                      ? CameraPage()
+                      : const Center(child: Text('Camera is Close'));
+
+                }
                 switch (index) {
                   case 0:
                     return Center(child: Text('گفتگو'));
@@ -61,7 +70,7 @@ class CallBackView extends StatelessWidget {
                   case 3:
                     return CameraPage();
                   case 4:
-                    return Center(child: Text('بلندگو'));
+                    return Container();
                   default:
                     return SizedBox();
                 }
@@ -73,3 +82,32 @@ class CallBackView extends StatelessWidget {
     );
   }
 }
+//BlocBuilder<BottomNavCubit, Map<String, dynamic>>(
+//               builder: (context, state) {
+//
+//                 int index = state["index"];
+//                 bool cameraOpen = state["cameraOpen"];
+//                 if (index == 3) {
+//                   return cameraOpen
+//                       ? CameraPage()
+//                       : const Center(child: Text('Camera is Close'));
+//
+//                 }
+//                 switch (index) {
+//                   case 0:
+//                     return Center(child: Text('گفتگو'));
+//                   case 1:
+//                     return Center(child: Text('میکروفون'));
+//                   case 2:
+//                     return Center(child: Text('قطع کردن'));
+//                   case 3:
+//                     return CameraPage();
+//                   case 4:
+//                     return Container();
+//                   default:
+//                     return SizedBox();
+//                 }
+//               },
+//             ),
+
+//

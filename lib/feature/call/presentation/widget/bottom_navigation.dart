@@ -17,28 +17,34 @@ class BottomNavigation extends StatelessWidget {
       child: Row(
         children: List.generate(5, (index) {
           return Expanded(
-            child: BlocSelector<BottomNavCubit, int, bool>(
-              selector: (selectedIndex) => selectedIndex == index,
+            child: BlocSelector<BottomNavCubit, Map<String,dynamic>, bool>(
+              selector: (state) => state["index"]==index,
               builder: (context, isSelected) {
+                final cameraCubit= context.read<BottomNavCubit>();
+
+
                 final bool isSpecial = index == 2;
-                // final bool isSelected = true;
-
+                final bool isCamera=index==3;
                 final Color backgroundColor = isSelected
-                    ? (isSpecial ? Colors.purple : Colors.grey) : (isSpecial ? Colors.red : Colors.grey);
-                final Color iconColor = isSelected? (isSpecial ? Constant.cardBackground : Constant.userText) : (isSpecial ? Constant.cardBackground : Constant.menuButton);
 
+                    ? (isSpecial ? Constant.incorrectPText : Constant.selectButtonBackground)
+                    : (isSpecial ? Constant.incorrectPText : Constant.selectButtonBackground);
+
+                final Color iconColor = isSelected
+
+                    ? (isSpecial ? Constant.cardBackground : Constant.selectButtonText)
+                    : (isSpecial
+                          ? Constant.cardBackground
+                          : Constant.buttonNav);
 
                 return GestureDetector(
-                  onTap: () => context.read<BottomNavCubit>().changeTab(index),
+                  onTap: () => cameraCubit.changeTab(index),
                   child: Column(
                     children: [
                       SizedBox(height: 20.0),
                       CircleAvatar(
                         backgroundColor: backgroundColor,
-                        child: Icon(
-                          getIcon(index),
-                          color: iconColor
-                        ),
+                        child: Icon(getIcon(index), color: iconColor),
                       ),
                       SizedBox(height: 10.0),
                       Text(getLable(index)),
@@ -52,7 +58,7 @@ class BottomNavigation extends StatelessWidget {
       ),
     );
   }
-
+//context.read<BottomNavCubit>().changeTab(index),
   IconData getIcon(int index) {
     switch (index) {
       case 0:
